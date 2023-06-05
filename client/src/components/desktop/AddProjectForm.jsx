@@ -12,8 +12,8 @@ import React, { useState } from "react";
 let init = {
   projectName: "",
   location: "Pune",
-  startDate: 0,
-  endData: 0,
+  startDate: "",
+  endData: "",
   priority: "High",
   reason: "Business",
   type: "Internal",
@@ -24,14 +24,29 @@ let init = {
 
 export default function AddProjectForm() {
   let [data, setData] = useState(init);
+  let [error, setError] = useState(false);
 
   let handleChange = (e) => {
-    let { name, value } = e.target;    
+    let { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
 
   let handleClick = () => {
+    if (data.projectName === "") {
+      setError(true);
+      return;
+    } else {
+      setError(false);
+    }
+
+    let st = Date.parse(data.startDate);
+    let en = Date.parse(data.endData);
+    if (st > en) {
+      alert("Start date should be less tha end date");
+      return;
+    }
     console.log(data);
+    setData(init);
   };
 
   let {
@@ -69,7 +84,7 @@ export default function AddProjectForm() {
             name="projectName"
             onChange={handleChange}
           />
-          <Text color="red">Project Theme require</Text>
+          {error ? <Text color="red">Project Theme require</Text> : null}
         </Box>
         <Button
           color={"#FFFFFF"}
@@ -112,7 +127,7 @@ export default function AddProjectForm() {
             <option value="Compressor">Compressor</option>
             <option value="Glass">Glass</option>
           </Select>
-        </Box>s
+        </Box>
         <Box>
           <FormLabel color={"#a4a4a4"}>Category</FormLabel>
           <Select value={category} onChange={handleChange} name="category">

@@ -24,6 +24,7 @@ let init = {
 
 export default function MobileAddProjectForm() {
   let [data, setData] = useState(init);
+  let [error, setError] = useState(false);
 
   let handleChange = (e) => {
     let { name, value } = e.target;
@@ -31,7 +32,21 @@ export default function MobileAddProjectForm() {
   };
 
   let handleClick = () => {
+    if (data.projectName === "") {
+      setError(true);
+      return;
+    } else {
+      setError(false);
+    }
+
+    let st = Date.parse(data.startDate);
+    let en = Date.parse(data.endData);
+    if (st > en) {
+      alert("Start date should be less tha end date");
+      return;
+    }
     console.log(data);
+    setData(init);
   };
 
   let {
@@ -69,7 +84,7 @@ export default function MobileAddProjectForm() {
           name="projectName"
           onChange={handleChange}
         />
-        <Text color="red">Project Theme require</Text>
+        {error ? <Text color="red">Project Theme require</Text> : null}
       </Box>
 
       <Box>

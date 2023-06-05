@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import DesktopNavbar from "../components/desktop/DesktopNavbar";
 import DesktopHeader from "../components/desktop/DesktopHeader";
 import AddProjectForm from "../components/desktop/AddProjectForm";

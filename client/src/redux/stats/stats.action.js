@@ -1,5 +1,5 @@
 import axios from "axios";
-import { STATS_ERROR, STATS_LOADING, STATS_SUCCESS } from "./banker.type";
+import { STATS_ERROR, STATS_LOADING, STATS_SUCCESS } from "./stats.type";
 
 const baseUrl = "https://project-management-zyyv.onrender.com";
 

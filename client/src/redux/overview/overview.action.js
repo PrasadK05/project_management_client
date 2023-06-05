@@ -2,7 +2,7 @@ import {
   OVERVIEW_ERROR,
   OVERVIEW_LOADING,
   OVERVIEW_SUCCESS,
-} from "./customer.type";
+} from "./overview.type";
 import axios from "axios";
 
 const baseUrl = "https://project-management-zyyv.onrender.com";

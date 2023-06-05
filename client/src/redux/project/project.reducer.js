@@ -1,4 +1,8 @@
-import { ACC_ERROR, ACC_LOADING, ACC_SUCCESS } from "./account.type";
+import {
+  PROJECT_ERROR,
+  PROJECT_LOADING,
+  PROJECT_SUCCESS,
+} from "./project.type";
 
 const accInitalState = {
   loading: false,
@@ -9,7 +13,7 @@ const accInitalState = {
 
 export const projectReducer = (state = accInitalState, action) => {
   switch (action.type) {
-    case ACC_SUCCESS: {
+    case PROJECT_SUCCESS: {
       return {
         ...state,
         projects: action.payload.result,
@@ -18,7 +22,7 @@ export const projectReducer = (state = accInitalState, action) => {
         error: false,
       };
     }
-    case ACC_ERROR: {
+    case PROJECT_ERROR: {
       return {
         ...state,
         error: true,
@@ -27,7 +31,7 @@ export const projectReducer = (state = accInitalState, action) => {
         loading: false,
       };
     }
-    case ACC_LOADING: {
+    case PROJECT_LOADING: {
       return {
         ...state,
         loading: true,

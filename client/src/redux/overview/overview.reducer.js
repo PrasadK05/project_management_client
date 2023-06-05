@@ -2,7 +2,7 @@ import {
   OVERVIEW_ERROR,
   OVERVIEW_LOADING,
   OVERVIEW_SUCCESS,
-} from "./customer.type";
+} from "./overview.type";
 
 const cusInitalState = {
   loading: false,

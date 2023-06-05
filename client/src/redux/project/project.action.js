@@ -64,3 +64,25 @@ export const getProj =
       return false;
     }
   };
+
+export const addProj = async (token, data) => {
+  let headers = { Authorization: `Bearer ${token}` };
+
+  try {
+    let res = await axios.post(`${baseUrl}/`, data, { headers });
+    return res.data.status;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const updateProj = async (token, data, id) => {
+  let headers = { Authorization: `Bearer ${token}` };
+
+  try {
+    let res = await axios.post(`${baseUrl}/${id}`, data, { headers });
+    return res.data.status;
+  } catch (error) {
+    return false;
+  }
+};

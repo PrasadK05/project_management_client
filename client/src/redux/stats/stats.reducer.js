@@ -1,15 +1,10 @@
-import {
-  STATS_ERROR,
-  STATS_LOADING,
-  STATS_SUCCESS,
-} from "./banker.type";
+import { STATS_ERROR, STATS_LOADING, STATS_SUCCESS } from "./stats.type";
 
 const bankInitalState = {
   loading: false,
   statsData: [],
   error: false,
 };
-
 
 export const statReducer = (state = bankInitalState, action) => {
   switch (action.type) {

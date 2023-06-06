@@ -7,7 +7,7 @@ import {
 const accInitalState = {
   loading: false,
   projects: [],
-  total: 0,
+  total: 1,
   error: false,
 };
 
@@ -27,7 +27,7 @@ export const projectReducer = (state = accInitalState, action) => {
         ...state,
         error: true,
         projects: [],
-        total: 0,
+        total: 1,
         loading: false,
       };
     }
@@ -36,7 +36,7 @@ export const projectReducer = (state = accInitalState, action) => {
         ...state,
         loading: true,
         projects: [],
-        total: 0,
+        total: 1,
         error: false,
       };
     }

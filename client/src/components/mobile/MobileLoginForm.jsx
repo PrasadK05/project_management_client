@@ -13,19 +13,44 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-export default function MobileLoginForm() {
+let init = {
+  email: "",
+  password: "",
+};
+
+export default function MobileLoginForm({ loginFunction, err, loading }) {
   let [error, setError] = useState(false);
+  let [data, setData] = useState(init);
+  let { email, password } = data;
+  let handleChange = (e) => {
+    let { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  };
+
+  let handleClick = (e) => {
+    if (data.email === "" || data.password === "") {
+      return setError(true);
+    }
+    e.preventDefault();
+    loginFunction(data);
+    setData(init);
+  };
   return (
     <>
       <Box w="100%" px={"20px"} py="20px" bg="#FFFFFF" mt="30px">
         <Box display={"flex"} justifyContent={"left"} alignItems={"center"}>
           <Text fontSize={"2xl"}>Login to get started</Text>
         </Box>
-        <form>
+        <form onSubmit={handleClick}>
           <Box display={"flex"} flexDirection={"column"} gap={"12px"} mt="40px">
             <FormControl isInvalid={error}>
               <FormLabel color={"grey"}>Email</FormLabel>
-              <Input type="email" />
+              <Input
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleChange}
+              />
               {error ? (
                 <FormErrorMessage>Email is required.</FormErrorMessage>
               ) : null}
@@ -33,7 +58,13 @@ export default function MobileLoginForm() {
             <FormControl isInvalid={error}>
               <FormLabel color={"grey"}>Password</FormLabel>
               <InputGroup>
-                <Input type="password" colorScheme="gery" />
+                <Input
+                  type="password"
+                  colorScheme="gery"
+                  name="password"
+                  value={password}
+                  onChange={handleChange}
+                />
                 <InputRightElement>
                   <Image src="/assets/hide-password.svg" />
                 </InputRightElement>
@@ -50,7 +81,7 @@ export default function MobileLoginForm() {
                 </FormHelperText>
               </Box>
             </FormControl>
-            <Box display={"flex"} justifyContent={"left"}>
+            <Box display={err ? "flex" : "none"} justifyContent={"left"}>
               <Text color={"red"}>Invalid credentials</Text>
             </Box>
             <Button

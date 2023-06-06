@@ -31,13 +31,12 @@ export const getProj =
   async (dispatch) => {
     dispatch(projectLoad());
     let headers = { Authorization: `Bearer ${data.token}` };
-
     let res;
 
     try {
       if (search && sort) {
         res = await axios.get(
-          `${baseUrl}/projects?page=${page}&q=${search}&${sort}`,
+          `${baseUrl}/projects?page=${page}&q=${search}&sort=${sort}`,
           { headers }
         );
       } else if (search) {
@@ -45,7 +44,7 @@ export const getProj =
           headers,
         });
       } else if (sort) {
-        res = await axios.get(`${baseUrl}/projects?page=${page}&${sort}`, {
+        res = await axios.get(`${baseUrl}/projects?page=${page}&sort=${sort}`, {
           headers,
         });
       } else {
@@ -60,6 +59,7 @@ export const getProj =
         return false;
       }
     } catch (error) {
+      console.log(error);
       dispatch(projectError());
       return false;
     }
@@ -67,9 +67,8 @@ export const getProj =
 
 export const addProj = async (token, data) => {
   let headers = { Authorization: `Bearer ${token}` };
-
   try {
-    let res = await axios.post(`${baseUrl}/`, data, { headers });
+    let res = await axios.post(`${baseUrl}/projects`, { ...data }, { headers });
     return res.data.status;
   } catch (error) {
     return false;
@@ -80,7 +79,8 @@ export const updateProj = async (token, data, id) => {
   let headers = { Authorization: `Bearer ${token}` };
 
   try {
-    let res = await axios.post(`${baseUrl}/${id}`, data, { headers });
+    let res = await axios.patch(`${baseUrl}/projects/${id}`, data, { headers });
+
     return res.data.status;
   } catch (error) {
     return false;

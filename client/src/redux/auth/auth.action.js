@@ -44,8 +44,8 @@ export const loginProcess = (data) => async (dispatch) => {
   dispatch(authLoginLoad());
   try {
     let res = await axios.post(`${baseUrl}/login`, data);
-
-    if (res.data.status) {
+console.log(res);
+    if (res.status===200) {
       dispatch(authLoginSucc(res.data));
       Cookies.set("token", res.data.token);      
       return res.data.Message;
@@ -54,6 +54,7 @@ export const loginProcess = (data) => async (dispatch) => {
       return false;
     }
   } catch (error) {
+    console.log(error);
     dispatch(authLoginFail());
     return false;
   }

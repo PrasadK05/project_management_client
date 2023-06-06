@@ -9,19 +9,40 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Spinner,
   Text,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 
-export default function DesktopLoginForm() {
+let init = {
+  email: "",
+  password: "",
+};
+
+export default function DesktopLoginForm({ loginFunction, loading, err }) {
   let [error, setError] = useState(false);
+  let [data, setData] = useState(init);
+  let { email, password } = data;
+  let handleChange = (e) => {
+    let { name, value } = e.target;
+    setData({ ...data, [name]: value });
+  };
+
+  let handleClick = (e) => {
+    if (data.email === "" || data.password === "") {
+      return setError(true);
+    }
+    e.preventDefault();
+    loginFunction(data);
+    setData(init);
+  };
   return (
     <Box
       position={"absolute"}
       w="28%"
       top={"20%"}
-      left={"39%"}   
-      display={{base:"none", sm:"none", md:"block", lg:"block"}}      
+      left={"39%"}
+      display={{ base: "none", sm: "none", md: "block", lg: "block" }}
     >
       <Box
         display={"flex"}
@@ -45,19 +66,30 @@ export default function DesktopLoginForm() {
         <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
           <Text fontSize={"2xl"}>Login to get started</Text>
         </Box>
-        <form>
+        <form onSubmit={handleClick}>
           <Box display={"flex"} flexDirection={"column"} gap={"20px"} mt="40px">
             <FormControl isInvalid={error}>
               <FormLabel color={"grey"}>Email</FormLabel>
-              <Input type="email"  />
+              <Input
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleChange}
+              />
               {error ? (
                 <FormErrorMessage>Email is required.</FormErrorMessage>
               ) : null}
             </FormControl>
             <FormControl isInvalid={error}>
-              <FormLabel  color={"grey"}>Password</FormLabel>
+              <FormLabel color={"grey"}>Password</FormLabel>
               <InputGroup>
-                <Input type="password" colorScheme="gery" />
+                <Input
+                  type="password"
+                  colorScheme="gery"
+                  name="password"
+                  value={password}
+                  onChange={handleChange}
+                />
                 <InputRightElement>
                   <Image src="/assets/hide-password.svg" />
                 </InputRightElement>
@@ -83,12 +115,12 @@ export default function DesktopLoginForm() {
               color={"#FFFFFF"}
               bg="#035fb2"
             >
-              Login
+              {loading ? <Spinner size="sm" color={"blue.500"} /> : "Login"}
             </Button>
           </Box>
         </form>
       </Box>
-      <Box display={"flex"} justifyContent={"center"} py="20px">
+      <Box display={err ? "flex" : "none"} justifyContent={"center"} py="20px">
         <Text color={"red"}>Invalid credentials</Text>
       </Box>
     </Box>

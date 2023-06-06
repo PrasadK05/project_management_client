@@ -1,11 +1,12 @@
 import { Box, Image } from "@chakra-ui/react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function MobileNavbar() {
+  let location = useLocation();
   return (
     <Box
-      w="100%"    
+      w="100%"
       position={"fixed"}
       bottom={"0px"}
       display={"flex"}
@@ -19,13 +20,31 @@ export default function MobileNavbar() {
       boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
     >
       <Link to={"/"}>
-        <Image src="/assets/Dashboard.svg" />
+        <Image
+          src={
+            location.pathname === "/"
+              ? "/assets/Dashboard-active.svg"
+              : "/assets/Dashboard.svg"
+          }
+        />
       </Link>
-      <Link to={"/"}>
-        <Image src="/assets/Project-list.svg" />
+      <Link to={"/projects"}>
+        <Image
+          src={
+            location.pathname === "/projects"
+              ? "/assets/Project-list-active.svg"
+              : "/assets/Project-list.svg"
+          }
+        />
       </Link>
-      <Link to={"/"}>
-        <Image src="/assets/create-project.svg" />
+      <Link to={"/addProject"}>
+        <Image
+          src={
+            location.pathname === "/addProject"
+              ? "/assets/create-project-active.svg"
+              : "/assets/create-project.svg"
+          }
+        />
       </Link>
     </Box>
   );

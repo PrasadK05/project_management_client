@@ -4,10 +4,12 @@ import {
   FormLabel,
   Input,
   Select,
+  Spinner,
   Text,
   Textarea,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+
 
 let init = {
   projectName: "",
@@ -22,7 +24,7 @@ let init = {
   department: "Strategy",
 };
 
-export default function AddProjectForm() {
+export default function AddProjectForm({ postData, load }) {
   let [data, setData] = useState(init);
   let [error, setError] = useState(false);
 
@@ -45,7 +47,7 @@ export default function AddProjectForm() {
       alert("Start date should be less tha end date");
       return;
     }
-    console.log(data);
+    postData({ ...data, startDate: st, endDate: en });
     setData(init);
   };
 
@@ -93,7 +95,7 @@ export default function AddProjectForm() {
           px="30px"
           onClick={handleClick}
         >
-          Save Project
+         {load?(<Spinner size='sm' />):"Save Project"}
         </Button>
       </Box>
       <Box

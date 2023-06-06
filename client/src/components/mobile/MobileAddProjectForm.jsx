@@ -6,6 +6,7 @@ import {
   FormLabel,
   Input,
   Select,
+  Spinner,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 
@@ -22,7 +23,7 @@ let init = {
   department: "Strategy",
 };
 
-export default function MobileAddProjectForm() {
+export default function MobileAddProjectForm({postData, load}) {
   let [data, setData] = useState(init);
   let [error, setError] = useState(false);
 
@@ -45,8 +46,9 @@ export default function MobileAddProjectForm() {
       alert("Start date should be less tha end date");
       return;
     }
-    console.log(data);
+    postData({ ...data, startDate: st, endDate: en });
     setData(init);
+    
   };
 
   let {
@@ -176,7 +178,7 @@ export default function MobileAddProjectForm() {
         px="30px"
         onClick={handleClick}
       >
-        Save Project
+        {load?(<Spinner size='sm' />):"Save Project"}
       </Button>
     </Box>
   );

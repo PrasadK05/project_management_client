@@ -24,14 +24,32 @@ export default function DesktopNavbar() {
           gap={"30px"}
         >
           <Link to={"/"}>
-            <Image src="/assets/Dashboard.svg" />
+            <Image
+              src={
+                location.pathname === "/"
+                  ? "/assets/Dashboard-active.svg"
+                  : "/assets/Dashboard.svg"
+              }
+            />
           </Link>
-          <Link to={"/"}>
-            <Image src="/assets/Project-list.svg" />
+          <Link to={"/projects"}>
+            <Image
+              src={
+                location.pathname === "/projects"
+                  ? "/assets/Project-list-active.svg"
+                  : "/assets/Project-list.svg"
+              }
+            />
           </Link>
           <Divider w="100%" />
-          <Link to={"/"}>
-            <Image src="/assets/create-project.svg" />
+          <Link to={"/addProject"}>
+            <Image
+              src={
+                location.pathname === "/addProject"
+                  ? "/assets/create-project-active.svg"
+                  : "/assets/create-project.svg"
+              }
+            />
           </Link>
         </Box>
         <Box

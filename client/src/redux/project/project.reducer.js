@@ -10,7 +10,7 @@ const accInitalState = {
   total: 1,
   error: false,
 };
-
+//project reducer
 export const projectReducer = (state = accInitalState, action) => {
   switch (action.type) {
     case PROJECT_SUCCESS: {

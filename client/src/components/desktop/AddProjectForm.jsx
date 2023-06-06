@@ -10,7 +10,6 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 
-
 let init = {
   projectName: "",
   location: "Pune",
@@ -28,17 +27,22 @@ export default function AddProjectForm({ postData, load }) {
   let [data, setData] = useState(init);
   let [error, setError] = useState(false);
 
+  // Capture changes in form data
   let handleChange = (e) => {
     let { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
-
+  // submit function with validations
   let handleClick = () => {
     if (data.projectName === "") {
       setError(true);
       return;
     } else {
       setError(false);
+    }
+
+    if (data.startDate === "" || data.endData === "") {
+      return alert("Date required");
     }
 
     let st = Date.parse(data.startDate);
@@ -76,7 +80,6 @@ export default function AddProjectForm({ postData, load }) {
       top={"130px"}
       left="40px"
     >
-      {/* <form> */}
       <Box display={"flex"} justifyContent={"space-between"} w="100%">
         <Box w="55%">
           <Textarea
@@ -95,7 +98,7 @@ export default function AddProjectForm({ postData, load }) {
           px="30px"
           onClick={handleClick}
         >
-         {load?(<Spinner size='sm' />):"Save Project"}
+          {load ? <Spinner size="sm" /> : "Save Project"}
         </Button>
       </Box>
       <Box
@@ -110,7 +113,7 @@ export default function AddProjectForm({ postData, load }) {
           <Select value={reason} onChange={handleChange} name="reason">
             <option value="Business">Business</option>
             <option value="Dealership">Dealership</option>
-            <option value="option3">Transport</option>
+            <option value="Transport">Transport</option>
           </Select>
         </Box>
         <Box>
@@ -190,7 +193,6 @@ export default function AddProjectForm({ postData, load }) {
       <Box w="63%" display={"flex"} justifyContent={"right"} mt="20px">
         <Text>Status: Registered</Text>
       </Box>
-      {/* </form> */}
     </Box>
   );
 }

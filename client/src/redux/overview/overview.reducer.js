@@ -6,17 +6,17 @@ import {
 
 const cusInitalState = {
   loading: false,
-  customerTr: {},
+  overviewData: {},
   error: false,
 };
 
-
+// overview reducer
 export const overviewReducer = (state = cusInitalState, action) => {
   switch (action.type) {
     case OVERVIEW_SUCCESS: {
       return {
         ...state,
-        customerTr: action.payload,
+        overviewData: action.payload,
         loading: false,
         error: false,
       };
@@ -25,7 +25,7 @@ export const overviewReducer = (state = cusInitalState, action) => {
       return {
         ...state,
         error: true,
-        customerTr: {},
+        overviewData: {},
         loading: false,
       };
     }
@@ -33,7 +33,7 @@ export const overviewReducer = (state = cusInitalState, action) => {
       return {
         ...state,
         loading: true,
-        customerTr: {},
+        overviewData: {},
         error: false,
       };
     }

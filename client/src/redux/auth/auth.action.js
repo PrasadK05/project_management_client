@@ -38,43 +38,37 @@ export const authLogout = () => {
   };
 };
 
-
 // async login function
 export const loginProcess = (data) => async (dispatch) => {
   dispatch(authLoginLoad());
   try {
     let res = await axios.post(`${baseUrl}/login`, data);
-console.log(res);
-    if (res.status===200) {
+
+    if (res.status === 200) {
       dispatch(authLoginSucc(res.data));
-      Cookies.set("token", res.data.token);      
+      Cookies.set("token", res.data.token);
       return res.data.Message;
     } else {
       dispatch(authLoginFail());
       return false;
     }
   } catch (error) {
-    console.log(error);
     dispatch(authLoginFail());
     return false;
   }
 };
 
 // async logout function
-export const logoutProcess = (data) => async (dispatch) => {
-  dispatch(authLoginLoad());
+export const logoutProcess = async (data) => {
   let headers = { Authorization: `Bearer ${data.token}` };
   try {
     let res = await axios.get(`${baseUrl}/logout`, { headers });
     if (res.status === 200) {
-      dispatch(authLogout());
       return true;
     } else {
-      dispatch(authLoginFail());
       return false;
     }
   } catch (error) {
-    dispatch(authLoginFail());
     return false;
   }
 };

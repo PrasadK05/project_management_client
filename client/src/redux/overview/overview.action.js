@@ -7,6 +7,7 @@ import axios from "axios";
 
 const baseUrl = "https://project-management-zyyv.onrender.com";
 
+// overview success action
 export const overviewSucc = (payload) => {
   return {
     type: OVERVIEW_SUCCESS,
@@ -14,18 +15,20 @@ export const overviewSucc = (payload) => {
   };
 };
 
+// overview error action
 export const overviewError = () => {
   return {
     type: OVERVIEW_ERROR,
   };
 };
 
+// overview load action
 export const overviewLoad = () => {
   return {
     type: OVERVIEW_LOADING,
   };
 };
-
+//geting overview data by api
 export const getOverview = (data) => async (dispatch) => {
   dispatch(overviewLoad());
   let headers = { Authorization: `Bearer ${data.token}` };
@@ -34,7 +37,7 @@ export const getOverview = (data) => async (dispatch) => {
     let res = await axios.get(`${baseUrl}/projects/overview`, { headers });
 
     if (res.status === 200) {
-      dispatch(overviewSucc(res.data.transactions));
+      dispatch(overviewSucc(res.data.project));
       return true;
     } else {
       dispatch(overviewError());
@@ -45,4 +48,3 @@ export const getOverview = (data) => async (dispatch) => {
     return false;
   }
 };
-

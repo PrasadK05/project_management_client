@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function MobileNavbar() {
   let location = useLocation();
+
   return (
     <Box
       w="100%"

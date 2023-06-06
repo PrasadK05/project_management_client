@@ -2,26 +2,26 @@ import axios from "axios";
 import { STATS_ERROR, STATS_LOADING, STATS_SUCCESS } from "./stats.type";
 
 const baseUrl = "https://project-management-zyyv.onrender.com";
-
+//stats success action
 export const statsSucc = (payload) => {
   return {
     type: STATS_SUCCESS,
     payload,
   };
 };
-
+// stats error action
 export const statsError = () => {
   return {
     type: STATS_ERROR,
   };
 };
-
+// stats load action
 export const statsLoad = () => {
   return {
     type: STATS_LOADING,
   };
 };
-
+// geting stat data
 export const getStats = (data) => async (dispatch) => {
   dispatch(statsLoad());
   let headers = { Authorization: `Bearer ${data.token}` };

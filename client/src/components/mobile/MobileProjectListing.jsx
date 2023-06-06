@@ -5,7 +5,6 @@ import {
   DrawerBody,
   DrawerCloseButton,
   DrawerContent,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   Input,
@@ -39,32 +38,32 @@ export default function MobileProjectListing() {
   let [show, setShow] = useState(true);
 
   let totalPages = Math.ceil(total / 10);
-
+  // search handler
   let handleChange = (e) => {
     setSearch(e.target.value);
     if (search.length !== 0) {
       setShow(false);
     }
   };
-
+  //reset handler
   let handleReset = () => {
     setSearch("");
     setShow(true);
   };
-
+  //sort handler
   let handleSort = (val) => {
-    console.log(val);
     setSort(val);
   };
-
+  // pagination next page handler
   let nextPage = () => {
     setCurr((prev) => prev + 1);
   };
+  // pagination previous page handler
   let prevPage = () => {
     setCurr((prev) => prev - 1);
   };
-
-  let updatStatus = (val, id) => {    
+  //updating status
+  let updatStatus = (val, id) => {
     updateProj(data.token, { status: val }, id)
       .then((res) => {
         if (res) {
@@ -74,11 +73,10 @@ export default function MobileProjectListing() {
         }
       })
       .catch((err) => {
-        console.log(err);
         alert("Error hile updating status");
       });
   };
-
+  // data from api basis on page sort adn search
   useEffect(() => {
     const id = setTimeout(() => {
       dispatch(getProj(data, search, sort, curr));
@@ -214,36 +212,6 @@ export default function MobileProjectListing() {
           bg="#0cc9e8"
         >
           {curr}
-        </Button>
-        <Button
-          size={"sm"}
-          borderRadius={"50%"}
-          display={totalPages < curr + 1 ? "none" : "block"}
-          onClick={() => setCurr(curr + 1)}
-          color={"black"}
-          bg="transparant"
-        >
-          {curr + 1}
-        </Button>
-        <Button
-          size={"sm"}
-          borderRadius={"50%"}
-          display={totalPages < curr + 2 ? "none" : "block"}
-          onClick={() => setCurr(curr + 2)}
-          color={"black"}
-          bg="transparant"
-        >
-          {curr + 2}
-        </Button>
-        <Button
-          size={"sm"}
-          borderRadius={"50%"}
-          display={totalPages < curr + 3 ? "none" : "block"}
-          onClick={() => setCurr(curr + 3)}
-          color={"black"}
-          bg="transparant"
-        >
-          {curr + 3}
         </Button>
         <Button
           size={"sm"}

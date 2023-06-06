@@ -23,11 +23,14 @@ export default function DesktopLoginForm({ loginFunction, loading, err }) {
   let [error, setError] = useState(false);
   let [data, setData] = useState(init);
   let { email, password } = data;
+
+  // capturring changes in form
   let handleChange = (e) => {
     let { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
 
+  //Submitting login form with vakidation
   let handleClick = (e) => {
     if (data.email === "" || data.password === "") {
       return setError(true);

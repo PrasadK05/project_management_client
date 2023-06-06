@@ -25,7 +25,7 @@ export default function DesktopTableRow({
       <Tr>
         <Td>
           <Box>
-            <Text>{projectName}</Text>
+            <Text fontWeight={"bold"}>{projectName}</Text>
             <Text>{`${start.month} ${start.date}, ${start.year} to ${end.month} ${end.date}, ${end.year}`}</Text>
           </Box>
         </Td>
@@ -36,7 +36,7 @@ export default function DesktopTableRow({
         <Td>{priority}</Td>
         <Td>{department}</Td>
         <Td>{location}</Td>
-        <Td>{status}</Td>
+        <Td fontWeight={"bold"}>{status}</Td>
         <Td>
           <Button
             size={"sm"}

@@ -5,7 +5,7 @@ const bankInitalState = {
   statsData: [],
   error: false,
 };
-
+//stats reducer
 export const statReducer = (state = bankInitalState, action) => {
   switch (action.type) {
     case STATS_SUCCESS: {

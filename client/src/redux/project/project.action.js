@@ -6,26 +6,26 @@ import {
 import axios from "axios";
 
 const baseUrl = "https://project-management-zyyv.onrender.com";
-
+// project success action
 export const projectSucc = (payload) => {
   return {
     type: PROJECT_SUCCESS,
     payload,
   };
 };
-
+// project error action
 export const projectError = () => {
   return {
     type: PROJECT_ERROR,
   };
 };
-
+// project loading action
 export const projectLoad = () => {
   return {
     type: PROJECT_LOADING,
   };
 };
-
+// get project data from api
 export const getProj =
   (data, search, sort, page = 1) =>
   async (dispatch) => {
@@ -59,22 +59,23 @@ export const getProj =
         return false;
       }
     } catch (error) {
-      console.log(error);
       dispatch(projectError());
       return false;
     }
   };
 
+//adding project
 export const addProj = async (token, data) => {
   let headers = { Authorization: `Bearer ${token}` };
   try {
     let res = await axios.post(`${baseUrl}/projects`, { ...data }, { headers });
+
     return res.data.status;
   } catch (error) {
     return false;
   }
 };
-
+//updating project
 export const updateProj = async (token, data, id) => {
   let headers = { Authorization: `Bearer ${token}` };
 

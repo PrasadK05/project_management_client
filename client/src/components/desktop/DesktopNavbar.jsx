@@ -1,9 +1,30 @@
 import { Box, Divider, Image } from "@chakra-ui/react";
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { logoutProcess } from "../../redux/auth/auth.action";
+import { useSelector } from "react-redux";
+import Cookies from "js-cookie";
 
 export default function DesktopNavbar() {
   let location = useLocation();
+  let { data } = useSelector((store) => store.auth);
+  let navigate = useNavigate();
+  // handeling logout
+  let handleLogout = () => {
+    logoutProcess(data)
+      .then((res) => {
+        if (res) {
+          alert("logout succesful");
+          Cookies.remove("token");
+          navigate("/login");
+        } else {
+          alert("logout unsuccesful");
+        }
+      })
+      .catch((err) => {
+        alert("logout unsuccesful");
+      });
+  };
   return (
     <>
       <Box
@@ -14,6 +35,7 @@ export default function DesktopNavbar() {
         justifyContent={"flex-end"}
         alignItems={"center"}
         py={"20px"}
+        bg="#FFFFFF"
       >
         <Box
           width={"50%"}
@@ -58,7 +80,7 @@ export default function DesktopNavbar() {
           flexDirection={"column"}
           alignItems={"center"}
         >
-          <Link to={"/"}>
+          <Link to={""} onClick={handleLogout}>
             <Image src="/assets/Logout.svg" />
           </Link>
         </Box>

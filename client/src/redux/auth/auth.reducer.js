@@ -14,7 +14,7 @@ const authInitalState = {
   error: false,
 };
 
-
+//auth reducer
 export const authReducer = (state = authInitalState, action) => {
   switch (action.type) {
     case AUTH_LOG_IN_SUCCESS: {

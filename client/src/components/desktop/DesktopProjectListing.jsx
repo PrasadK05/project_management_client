@@ -36,31 +36,32 @@ export default function DesktopProjectListing() {
   let [show, setShow] = useState(true);
 
   let totalPages = Math.ceil(total / 10);
-
+  // capturing changes in form data
   let handleChange = (e) => {
     setSearch(e.target.value);
     if (search.length !== 0) {
       setShow(false);
     }
   };
-
+  // rest search value
   let handleReset = () => {
     setSearch("");
     setShow(true);
   };
-
+  // capturing sort value
   let handleSort = (e) => {
     setSort(e.target.value);
   };
-
+  // going to next page
   let nextPage = () => {
     setCurr((prev) => prev + 1);
   };
+  // setting prev page
   let prevPage = () => {
     setCurr((prev) => prev - 1);
   };
-
-  let updatStatus = (val, id) => {    
+  // updating status
+  let updatStatus = (val, id) => {
     updateProj(data.token, { status: val }, id)
       .then((res) => {
         if (res) {
@@ -70,11 +71,10 @@ export default function DesktopProjectListing() {
         }
       })
       .catch((err) => {
-        console.log(err);
         alert("Error hile updating status");
       });
   };
-
+  // data basis on search, sort and page
   useEffect(() => {
     const id = setTimeout(() => {
       dispatch(getProj(data, search, sort, curr));
@@ -148,7 +148,18 @@ export default function DesktopProjectListing() {
         </Box>
         <Box w="100%" mt="20px">
           <TableContainer>
-            <div style={{ maxHeight: "300px", overflowY: "auto" }}>
+            <Box
+              style={{ maxHeight: "500px", overflowY: "auto" }}
+              css={{
+                "&::-webkit-scrollbar": {
+                  width: "0.4em",
+                  background: "transparent",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  background: "transparent",
+                },
+              }}
+            >
               <Table variant="simple" size={"sm"}>
                 <Thead bg="#ebf5ff" position={"sticky"} top={0} zIndex={100}>
                   <Tr>
@@ -190,7 +201,7 @@ export default function DesktopProjectListing() {
                     })}
                 </Tbody>
               </Table>
-            </div>
+            </Box>
           </TableContainer>
         </Box>
         <Box
@@ -231,33 +242,6 @@ export default function DesktopProjectListing() {
           bg="#0cc9e8"
         >
           {curr}
-        </Button>
-        <Button
-          borderRadius={"50%"}
-          display={totalPages < curr + 1 ? "none" : "block"}
-          onClick={() => setCurr(curr + 1)}
-          color={"black"}
-          bg="transparant"
-        >
-          {curr + 1}
-        </Button>
-        <Button
-          borderRadius={"50%"}
-          display={totalPages < curr + 2 ? "none" : "block"}
-          onClick={() => setCurr(curr + 2)}
-          color={"black"}
-          bg="transparant"
-        >
-          {curr + 2}
-        </Button>
-        <Button
-          borderRadius={"50%"}
-          display={totalPages < curr + 3 ? "none" : "block"}
-          onClick={() => setCurr(curr + 3)}
-          color={"black"}
-          bg="transparant"
-        >
-          {curr + 3}
         </Button>
         <Button
           borderRadius={"40%"}

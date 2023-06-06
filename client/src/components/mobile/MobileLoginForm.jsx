@@ -22,11 +22,13 @@ export default function MobileLoginForm({ loginFunction, err, loading }) {
   let [error, setError] = useState(false);
   let [data, setData] = useState(init);
   let { email, password } = data;
+
+  // capuring changes
   let handleChange = (e) => {
     let { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
-
+// login handler
   let handleClick = (e) => {
     if (data.email === "" || data.password === "") {
       return setError(true);

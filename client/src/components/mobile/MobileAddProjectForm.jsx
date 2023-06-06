@@ -13,8 +13,8 @@ import React, { useState } from "react";
 let init = {
   projectName: "",
   location: "Pune",
-  startDate: 0,
-  endData: 0,
+  startDate: "",
+  endData: "",
   priority: "High",
   reason: "Business",
   type: "Internal",
@@ -23,21 +23,25 @@ let init = {
   department: "Strategy",
 };
 
-export default function MobileAddProjectForm({postData, load}) {
+export default function MobileAddProjectForm({ postData, load }) {
   let [data, setData] = useState(init);
   let [error, setError] = useState(false);
-
+// capturing changes
   let handleChange = (e) => {
     let { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
-
+// submit handler ith validation
   let handleClick = () => {
     if (data.projectName === "") {
       setError(true);
       return;
     } else {
       setError(false);
+    }
+
+    if (data.startDate === "" || data.endData === "") {
+      return alert("Date required");
     }
 
     let st = Date.parse(data.startDate);
@@ -48,7 +52,6 @@ export default function MobileAddProjectForm({postData, load}) {
     }
     postData({ ...data, startDate: st, endDate: en });
     setData(init);
-    
   };
 
   let {
@@ -94,7 +97,7 @@ export default function MobileAddProjectForm({postData, load}) {
         <Select value={reason} onChange={handleChange} name="reason">
           <option value="Business">Business</option>
           <option value="Dealership">Dealership</option>
-          <option value="option3">Transport</option>
+          <option value="Transport">Transport</option>
         </Select>
       </Box>
       <Box>
@@ -178,7 +181,7 @@ export default function MobileAddProjectForm({postData, load}) {
         px="30px"
         onClick={handleClick}
       >
-        {load?(<Spinner size='sm' />):"Save Project"}
+        {load ? <Spinner size="sm" /> : "Save Project"}
       </Button>
     </Box>
   );

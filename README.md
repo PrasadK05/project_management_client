@@ -19,5 +19,5 @@ Click below to check live application
 [LIVE](https://coruscating-gaufre-572478.netlify.app/)
 
 ## Test credentials
-email: kiran.gosavi@techprimelab.com
-password: mypass321
+- email: kiran.gosavi@techprimelab.com
+- password: mypass321

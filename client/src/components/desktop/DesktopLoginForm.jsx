@@ -28,14 +28,16 @@ export default function DesktopLoginForm({ loginFunction, loading, err }) {
   let handleChange = (e) => {
     let { name, value } = e.target;
     setData({ ...data, [name]: value });
+    setError(false);
   };
 
   //Submitting login form with vakidation
   let handleClick = (e) => {
+    e.preventDefault();
     if (data.email === "" || data.password === "") {
       return setError(true);
     }
-    e.preventDefault();
+    
     loginFunction(data);
     setData(init);
   };
@@ -55,7 +57,7 @@ export default function DesktopLoginForm({ loginFunction, loading, err }) {
         gap="10px"
         py="20px"
       >
-        <Image src="/assets/Logo.svg" />
+        <Image src="/assets/Logo.svg" alt="error" />
         <Text color={"#FFFFFF"}>Online Project Management</Text>
       </Box>
 
@@ -94,7 +96,7 @@ export default function DesktopLoginForm({ loginFunction, loading, err }) {
                   onChange={handleChange}
                 />
                 <InputRightElement>
-                  <Image src="/assets/hide-password.svg" />
+                  <Image src="/assets/hide-password.svg" alt="error"/>
                 </InputRightElement>
               </InputGroup>
               <Box

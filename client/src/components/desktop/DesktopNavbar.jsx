@@ -52,6 +52,7 @@ export default function DesktopNavbar() {
                   ? "/assets/Dashboard-active.svg"
                   : "/assets/Dashboard.svg"
               }
+              alt="error"
             />
           </Link>
           <Link to={"/projects"}>
@@ -61,6 +62,7 @@ export default function DesktopNavbar() {
                   ? "/assets/Project-list-active.svg"
                   : "/assets/Project-list.svg"
               }
+              alt="error"
             />
           </Link>
           <Divider w="100%" />
@@ -71,6 +73,7 @@ export default function DesktopNavbar() {
                   ? "/assets/create-project-active.svg"
                   : "/assets/create-project.svg"
               }
+              alt="error"
             />
           </Link>
         </Box>
@@ -81,7 +84,7 @@ export default function DesktopNavbar() {
           alignItems={"center"}
         >
           <Link to={""} onClick={handleLogout}>
-            <Image src="/assets/Logout.svg" />
+            <Image src="/assets/Logout.svg" alt="error"/>
           </Link>
         </Box>
       </Box>

@@ -111,6 +111,10 @@ export default function MobileProjectListing() {
               type="text"
               placeholder="Search"
               fontSize={"20px"}
+              _focusVisible={{
+                outline: "none",
+                borderBottom: "1px solid blue",
+              }}
               outline={"none"}
               border={"none"}
               borderBottom={"1px solid blue"}

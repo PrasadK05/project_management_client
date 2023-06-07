@@ -27,13 +27,15 @@ export default function MobileLoginForm({ loginFunction, err, loading }) {
   let handleChange = (e) => {
     let { name, value } = e.target;
     setData({ ...data, [name]: value });
+    setError(false);
   };
 // login handler
   let handleClick = (e) => {
+    e.preventDefault();
     if (data.email === "" || data.password === "") {
       return setError(true);
     }
-    e.preventDefault();
+    
     loginFunction(data);
     setData(init);
   };
@@ -68,7 +70,7 @@ export default function MobileLoginForm({ loginFunction, err, loading }) {
                   onChange={handleChange}
                 />
                 <InputRightElement>
-                  <Image src="/assets/hide-password.svg" />
+                  <Image src="/assets/hide-password.svg" alt="error"/>
                 </InputRightElement>
               </InputGroup>
               <Box

@@ -27,6 +27,7 @@ export default function MobileNavbar() {
               ? "/assets/Dashboard-active.svg"
               : "/assets/Dashboard.svg"
           }
+          alt="error"
         />
       </Link>
       <Link to={"/projects"}>
@@ -36,6 +37,7 @@ export default function MobileNavbar() {
               ? "/assets/Project-list-active.svg"
               : "/assets/Project-list.svg"
           }
+          alt="error"
         />
       </Link>
       <Link to={"/addProject"}>
@@ -45,6 +47,7 @@ export default function MobileNavbar() {
               ? "/assets/create-project-active.svg"
               : "/assets/create-project.svg"
           }
+          alt="error"
         />
       </Link>
     </Box>

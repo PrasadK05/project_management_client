@@ -35,7 +35,7 @@ export default function MobileProjectCard({
           <Text fontWeight={"bold"} color={"#5c6268"}>
             {projectName}
           </Text>
-          <Text>{`${start.month} ${start.date}, ${start.year} to ${end.month} ${end.date}, ${end.year}`}</Text>
+          <Text>{`${start.month}-${start.date}, ${start.year} to ${end.month} ${end.date}, ${end.year}`}</Text>
         </Box>
         <Text fontWeight={"bold"} color={"#3e5d78"}>
           {status}

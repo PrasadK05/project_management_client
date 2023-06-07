@@ -26,7 +26,7 @@ export default function DesktopTableRow({
         <Td>
           <Box>
             <Text fontWeight={"bold"}>{projectName}</Text>
-            <Text>{`${start.month} ${start.date}, ${start.year} to ${end.month} ${end.date}, ${end.year}`}</Text>
+            <Text>{`${start.month}-${start.date}, ${start.year} to ${end.month} ${end.date}, ${end.year}`}</Text>
           </Box>
         </Td>
         <Td>{reason}</Td>

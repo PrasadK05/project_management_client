@@ -26,7 +26,7 @@ export default function MobileHeader({ title }) {
   };
   return (
     <Box w="100%" position={"sticky"} top={"0px"} zIndex={1000}>
-      <Image src="/assets/Header-bg.svg" w="100%" />
+      <Image src="/assets/Header-bg.svg" w="100%" alt="error"/>
       <Box
         w="90%"
         display={"flex"}
@@ -37,13 +37,13 @@ export default function MobileHeader({ title }) {
         left={"20px"}       
       >
         <Box display={"flex"} gap={"20px"}>
-          <Image src="/assets/back arrow.svg" />
+          <Image src="/assets/back arrow.svg" alt="error"/>
           <Text fontSize={"xl"} fontWeight={"bold"} color={"#FFFFFF"}>
             {title}
           </Text>
         </Box>
         <Box>
-          <Image src="/assets/Logout.svg" cursor={"pointer"} onClick={handleLogout}/>
+          <Image src="/assets/Logout.svg" cursor={"pointer"} onClick={handleLogout} alt="error"/>
         </Box>
       </Box>
     </Box>

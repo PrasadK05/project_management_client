@@ -89,7 +89,7 @@ export default function AddProjectForm({ postData, load }) {
             name="projectName"
             onChange={handleChange}
           />
-          {error ? <Text color="red">Project Theme require</Text> : null}
+          {error ? <Text color="red">Project Theme required</Text> : null}
         </Box>
         <Button
           color={"#FFFFFF"}

@@ -104,7 +104,7 @@ export default function DesktopLoginForm({ loginFunction, loading, err }) {
                 justifyContent={error ? "space-between" : "right"}
               >
                 {error ? (
-                  <FormErrorMessage>Email is required.</FormErrorMessage>
+                  <FormErrorMessage>Password is required.</FormErrorMessage>
                 ) : null}
                 <FormHelperText color={"#367cbd"} fontWeight={"bold"}>
                   Forgot password?

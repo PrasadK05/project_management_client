@@ -78,7 +78,7 @@ export default function MobileLoginForm({ loginFunction, err, loading }) {
                 justifyContent={error ? "space-between" : "right"}
               >
                 {error ? (
-                  <FormErrorMessage>Email is required.</FormErrorMessage>
+                  <FormErrorMessage>Password is required.</FormErrorMessage>
                 ) : null}
                 <FormHelperText color={"#367cbd"} fontWeight={"bold"}>
                   Forgot password?

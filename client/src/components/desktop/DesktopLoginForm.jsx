@@ -119,6 +119,7 @@ export default function DesktopLoginForm({ loginFunction, loading, err }) {
               borderRadius={"20px"}
               color={"#FFFFFF"}
               bg="#035fb2"
+              isDisabled={loading}
             >
               {loading ? <Spinner size="sm" color={"blue.500"} /> : "Login"}
             </Button>

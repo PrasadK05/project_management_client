@@ -1,7 +1,7 @@
 import axios from "axios";
 import { STATS_ERROR, STATS_LOADING, STATS_SUCCESS } from "./stats.type";
 
-const baseUrl = "https://project-management-zyyv.onrender.com";
+const baseUrl = process.env.REACT_APP_BASE_URL;
 //stats success action
 export const statsSucc = (payload) => {
   return {

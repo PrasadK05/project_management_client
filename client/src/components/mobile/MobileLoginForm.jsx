@@ -10,6 +10,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Spinner,
   Text,
 } from "@chakra-ui/react";
 
@@ -94,8 +95,9 @@ export default function MobileLoginForm({ loginFunction, err, loading }) {
               borderRadius={"20px"}
               color={"#FFFFFF"}
               bg="#035fb2"
+              isDisabled={loading}
             >
-              Login
+              {loading ? <Spinner size="sm" color={"blue.500"} /> : "Login"}
             </Button>
           </Box>
         </form>

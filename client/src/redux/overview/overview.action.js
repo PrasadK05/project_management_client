@@ -5,7 +5,7 @@ import {
 } from "./overview.type";
 import axios from "axios";
 
-const baseUrl = "https://project-management-zyyv.onrender.com";
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 // overview success action
 export const overviewSucc = (payload) => {

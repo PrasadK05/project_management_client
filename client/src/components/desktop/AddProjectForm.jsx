@@ -97,6 +97,7 @@ export default function AddProjectForm({ postData, load }) {
           borderRadius={"30px"}
           px="30px"
           onClick={handleClick}
+          isDisabled={load}
         >
           {load ? <Spinner size="sm" /> : "Save Project"}
         </Button>

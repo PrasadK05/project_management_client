@@ -20,7 +20,8 @@ let init = {
 };
 
 export default function MobileLoginForm({ loginFunction, err, loading }) {
-  let [error, setError] = useState(false);
+  let [passErr, setPassErr] = useState(false);
+  let [mailErr, setMailErr] = useState(false);
   let [data, setData] = useState(init);
   let { email, password } = data;
 
@@ -28,15 +29,28 @@ export default function MobileLoginForm({ loginFunction, err, loading }) {
   let handleChange = (e) => {
     let { name, value } = e.target;
     setData({ ...data, [name]: value });
-    setError(false);
+    setMailErr(false);
+    setPassErr(false);
   };
-// login handler
+  // login handler
   let handleClick = (e) => {
     e.preventDefault();
-    if (data.email === "" || data.password === "") {
-      return setError(true);
+    if (data.email === "" && data.password === "") {
+      setMailErr(true);
+      setPassErr(true);
+      return;
     }
-    
+
+    if (data.email === "") {
+      setMailErr(true);
+      return;
+    }
+
+    if (data.password === "") {
+      setPassErr(true);
+      return;
+    }
+
     loginFunction(data);
     setData(init);
   };
@@ -48,7 +62,7 @@ export default function MobileLoginForm({ loginFunction, err, loading }) {
         </Box>
         <form onSubmit={handleClick}>
           <Box display={"flex"} flexDirection={"column"} gap={"12px"} mt="40px">
-            <FormControl isInvalid={error}>
+            <FormControl isInvalid={mailErr}>
               <FormLabel color={"grey"}>Email</FormLabel>
               <Input
                 type="email"
@@ -56,11 +70,11 @@ export default function MobileLoginForm({ loginFunction, err, loading }) {
                 value={email}
                 onChange={handleChange}
               />
-              {error ? (
+              {mailErr ? (
                 <FormErrorMessage>Email is required.</FormErrorMessage>
               ) : null}
             </FormControl>
-            <FormControl isInvalid={error}>
+            <FormControl isInvalid={passErr}>
               <FormLabel color={"grey"}>Password</FormLabel>
               <InputGroup>
                 <Input
@@ -71,14 +85,14 @@ export default function MobileLoginForm({ loginFunction, err, loading }) {
                   onChange={handleChange}
                 />
                 <InputRightElement>
-                  <Image src="/assets/hide-password.svg" alt="error"/>
+                  <Image src="/assets/hide-password.svg" alt="error" />
                 </InputRightElement>
               </InputGroup>
               <Box
                 display={"flex"}
-                justifyContent={error ? "space-between" : "right"}
+                justifyContent={passErr ? "space-between" : "right"}
               >
-                {error ? (
+                {passErr ? (
                   <FormErrorMessage>Password is required.</FormErrorMessage>
                 ) : null}
                 <FormHelperText color={"#367cbd"} fontWeight={"bold"}>

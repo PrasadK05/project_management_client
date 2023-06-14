@@ -34,7 +34,7 @@ export default function AddProjectForm({ postData, load }) {
     let { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
-  // Optimised submit function with validations
+  // Optimized submit function with validations
   let handleClick = () => {
     if (
       data.projectName === "" ||

@@ -26,29 +26,35 @@ let init = {
 export default function AddProjectForm({ postData, load }) {
   let [data, setData] = useState(init);
   let [error, setError] = useState(false);
+  let [startErr, setStartErr] = useState(false);
+  let [endErr, setEndtErr] = useState(false);
 
   // Capture changes in form data
   let handleChange = (e) => {
     let { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
-  // submit function with validations
+  // Optimised submit function with validations
   let handleClick = () => {
-    if (data.projectName === "") {
-      setError(true);
+    if (
+      data.projectName === "" ||
+      data.startDate === "" ||
+      data.endData === ""
+    ) {
+      setStartErr(data.startDate === "");
+      setEndtErr(data.endData === "");
+      setError(data.projectName === "");
       return;
-    } else {
-      setError(false);
     }
 
-    if (data.startDate === "" || data.endData === "") {
-      return alert("Date required");
-    }
+    setStartErr(false);
+    setEndtErr(false);
+    setError(false);
 
     let st = Date.parse(data.startDate);
     let en = Date.parse(data.endData);
     if (st > en) {
-      alert("Start date should be less tha end date");
+      alert("Start date should be less than end date");
       return;
     }
     postData({ ...data, startDate: st, endDate: en });
@@ -171,6 +177,7 @@ export default function AddProjectForm({ postData, load }) {
             onChange={handleChange}
             name="startDate"
           />
+          {startErr ? <Text color="red">Start Date required</Text> : null}
         </Box>
         <Box>
           <FormLabel color={"#a4a4a4"}>End Date as per Project Plan</FormLabel>
@@ -180,6 +187,7 @@ export default function AddProjectForm({ postData, load }) {
             onChange={handleChange}
             name="endData"
           />
+          {endErr ? <Text color="red">End Date required</Text> : null}
         </Box>
         <Box>
           <FormLabel color={"#a4a4a4"}>Loacation</FormLabel>

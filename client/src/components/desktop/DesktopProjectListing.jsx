@@ -67,11 +67,11 @@ export default function DesktopProjectListing() {
         if (res) {
           dispatch(getProj(data, search, sort, curr));
         } else {
-          alert("Error hile updating status");
+          alert("Error while updating status");
         }
       })
       .catch((err) => {
-        alert("Error hile updating status");
+        alert("Error while updating status");
       });
   };
   // data basis on search, sort and page
